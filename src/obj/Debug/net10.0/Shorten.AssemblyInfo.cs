@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Shorten")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+242c98ad15118cd7ed2b3688378464d8487fe90b")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+c375ccc899398431640901483ee3f45aafad49ab")]
 [assembly: System.Reflection.AssemblyProductAttribute("Shorten")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Shorten")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
