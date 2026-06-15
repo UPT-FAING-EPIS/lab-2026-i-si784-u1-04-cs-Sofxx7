@@ -28,10 +28,14 @@ jobs:
             username: ${{github.actor}}
             password: ${{secrets.GITHUB_TOKEN}}
 
+      - name: Set lower case owner
+        run: |
+          echo "OWNER_LOWER=$(echo "${{ github.repository_owner }}" | tr '[:upper:]' '[:lower:]')" >> $GITHUB_ENV
+
       - name: 'Build and Push Docker Image'
         run: |
-            docker build . --tag ghcr.io/${{github.actor}}/shorten:${{github.sha}}
-            docker push ghcr.io/${{github.actor}}/shorten:${{github.sha}}
+            docker build . --tag ghcr.io/${{ env.OWNER_LOWER }}/shorten:${{github.sha}}
+            docker push ghcr.io/${{ env.OWNER_LOWER }}/shorten:${{github.sha}}
 
   deploy:
     permissions:
@@ -43,10 +47,14 @@ jobs:
       url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
 
     steps:
+      - name: Set lower case owner
+        run: |
+          echo "OWNER_LOWER=$(echo "${{ github.repository_owner }}" | tr '[:upper:]' '[:lower:]')" >> $GITHUB_ENV
+
       - name: Desplegar a Azure Web App
         id: deploy-to-webapp
         uses: azure/webapps-deploy@v2
         with:
           app-name: ${{ env.AZURE_WEBAPP_NAME }}
           publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
-          images: ghcr.io/${{github.actor}}/shorten:${{github.sha}}
+          images: ghcr.io/${{ env.OWNER_LOWER }}/shorten:${{github.sha}}
